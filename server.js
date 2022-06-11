@@ -11,14 +11,15 @@ var app = express();
 app.set('views', path.join(__dirname, 'app', 'views'));
 app.set('view engine', 'pug');
 
+// configurations setup
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app', 'public')));
 
+// bootstraping the different modules in app
 require('./bootstrap').bootstrap(app);
-const port = helper.env('PORT', 3000);
 const database = require('./config/database');
 database.sequelize.sync();
 
@@ -38,6 +39,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// start listening on the said port
+const port = helper.env('PORT', 3000);
 app.listen(port, function () {
   console.log(`Server started listening on ${port}`);
 });

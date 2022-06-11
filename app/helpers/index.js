@@ -1,5 +1,9 @@
 const fs = require('fs');
 
+/**
+ * Function that is allowing the app to use different helper functions
+ * @param {just a nothing paramater that is not required in processing} _ 
+ */
 exports.bootstrap = _ => {
     global['helper'] = [];
 

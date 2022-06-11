@@ -12,6 +12,9 @@ const { Sequelize, DataTypes } = require('sequelize');
 // 	}
 // };
 
+/**
+ * Initializing the database connection returning the db object for further operations
+ */
 const connectionString = helper.env('POSTGRES_URL', `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}/payment`);
 const sequelize = new Sequelize(connectionString);
 

@@ -1,5 +1,11 @@
 const fs = require('fs');
 
+/**
+ * Bootstraping routes to include them in the app. Function is reading the sub-directories and then files inside them.
+ * All the restful routes will be given api version based on the sub-directory name. Base route is being retured from each route file.
+ * View routes are being managed differently.
+ * @param {express app instance being used to include all routes} app 
+ */
 exports.bootstrap = app => {
     fs.readdirSync(__dirname).forEach(folder => {
         if (folder === 'index.js') {

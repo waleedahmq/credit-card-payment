@@ -1,3 +1,6 @@
+/**
+ * Different static values helpful in different helpers and utilities
+ */
 module.exports = {
     STATUS_CODES: {
         INTERNAL_SERVER_ERROR: 500,

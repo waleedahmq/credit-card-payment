@@ -1,5 +1,9 @@
 const { body } = require('express-validator');
 
+/**
+ * This function is being used to define the rules that will be applied during request validation
+ * @returns the rules that must be fulfilled for the request to be entertained ahead
+ */
 const cardRules = () => {
     let rules = [
         body('card_number', 'Please enter 16 digit card number')
