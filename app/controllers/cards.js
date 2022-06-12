@@ -1,4 +1,5 @@
-const cardService = require('../services/cards')
+const cardService = require('../services/cards');
+const helper = require('../helpers');
 
 /**
  * Controllers are used to manage the requests, responses and errors.
@@ -15,11 +16,17 @@ module.exports = {
         try {
             const body = { ...req.body, ...req.params, ...req.query };
             await cardService.addCard(body);
-            return helper.response(res, false, 'Card saved successfully', {});
+            if (!body.rest_call) {
+                return helper.render(res, 'success', false, 'Card saved successfully', {});
+            }
+            return helper.response(res, false, 'Card saved successfully');
         } catch (error) {
             const statusCode = error.status || 'INTERNAL_SERVER_ERROR';
             if (error.message && (typeof error.message === 'object' || Array.isArray(error.message))) {
                 error.message = JSON.stringify(error.message);
+            }
+            if (!body.rest_call) {
+                return helper.render(res, 'error', true, error.message, null, statusCode);
             }
             return helper.response(res, true, error.message, null, statusCode);
         }

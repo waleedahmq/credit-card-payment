@@ -1,0 +1,48 @@
+extends layout
+
+block content 
+
+    .container
+        h2= heading
+        
+        div.text-center
+            form(class='form-add-card' method='POST' action='/api/v1/cards')
+                #error
+                    if error
+                        p.text-danger Error!!!
+                
+                - var h1Classes = ['h3', 'mb-3', 'font-weight-normal']
+                h1(class=h1Classes) Please provide the following information
+
+                .col-md-12.col-sm-12.col-lg-12.col-xs-12.remove-padding
+                    .col-md-12.col-sm-12.col-lg-12.col-xs-12.remove-padding
+                        //-input card holder name
+                        label(for='cardHolderName' class='sr-only') Card Holder Name
+                        input(type='text' name='card_name' id='cardHolderName' class='form-control' placeholder='Full name on card' required autofocus)
+
+                .col-md-12.col-sm-12.col-lg-12.col-xs-12.remove-padding
+                    .col-md-12.col-sm-12.col-lg-12.col-xs-12.remove-padding
+                        //-input card holder name
+                        label(for='cardNumber' class='sr-only') Card Number
+                        input(type='text' pattern='[0-9/-]+' name='card_number' id='cardNumber' class='form-control' placeholder='16 digit card number' minlength='19' maxlength = '19' onkeypress='if(this.value.length==4||this.value.length==9||this.value.length==14)this.value=this.value+"-"' required)
+
+                .col-md-12.col-sm-12.col-lg-12.col-xs-12.remove-padding
+                    .col-md-6.col-sm-6.col-lg-6.col-xs-6.remove-padding-left
+                        //-input card cvv code
+                        label(for='cardCvv' class='sr-only') Card CVV Code
+                        input(type='text' pattern='[0-9]+' name='card_cvv' id='cardCvv' class='form-control' placeholder='03 digit card cvv code' minlength='3' maxlength = '3' required)
+
+                    .col-md-6.col-sm-6.col-lg-6.col-xs-6.remove-padding-right
+                        .col-md-6.col-sm-6.col-lg-6.col-xs-6.remove-padding-left
+                            //-input card expiry month
+                            label(for='cardExpiryMonth' class='sr-only') Card Expiry Month
+                            input(type='text' pattern='[0-9]+' name='card_expiry_month' id='cardExpiryMonth' class='form-control' placeholder='02 digit card expiry month' minlength='2' maxlength = '2' required)
+
+                        .col-md-6.col-sm-6.col-lg-6.col-xs-6.remove-padding-right
+                            //-input card expiry year
+                            label(for='cardExpiryYear' class='sr-only') Card Expiry year
+                            input(type='text' pattern='[0-9]+' name='card_expiry_year' id='cardExpiryYear' class='form-control' placeholder='02 digit card expiry year' minlength='2' maxlength = '2' required)
+
+                //-add card button
+                - var buttonClass=['btn', 'btn-lg', 'btn-primary', 'btn-block'];
+                button(class=buttonClass type='submit') Add Card

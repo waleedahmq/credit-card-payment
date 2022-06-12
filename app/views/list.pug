@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+    .container
+        h2= heading
+
+        #table-wrapper
+            table#desc
+                tr 
+                    th No.
+                    th Card Holder Name 
+                    th Card Number
+                    th Last Updated
+
+                each card in data.cards
+                    - const lastUpdated = moment(card.updatedAt).format('dddd, MMMM Do YYYY')
+                    - const cardNumber = card.card_number.match(/.{1,4}/g).join('-')
+                    tr 
+                        td= card.id 
+                        td= card.card_name
+                        td= cardNumber 
+                        td= lastUpdated 

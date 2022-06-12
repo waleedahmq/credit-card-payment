@@ -1,4 +1,5 @@
-const cardProvider = require('../providers/cards')
+const cardProvider = require('../providers/cards');
+const helper = require('../helpers');
 
 /**
  * Services are used to apply the processing required before saving objects in database or before returning response to client
@@ -30,7 +31,7 @@ const cardService = {
             if (card && card.card_number) {
                 card.card_number = helper.decrypt(card.card_number);
             }
-    
+
             delete card['card_cvv'];
             delete card['card_expiry_month'];
             delete card['card_expiry_year'];

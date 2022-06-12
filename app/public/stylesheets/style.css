@@ -1,8 +1,82 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-a {
-  color: #00B7FF;
+.error {
+  color: #ff0000;
+}
+
+.success {
+  color: #008001;
+}
+
+.info {
+  color: #3279b7;
+}
+
+#table-wrapper {
+  display: ß;
+  display: -ms-flexbox;
+  display: flex;
+
+}
+
+#desc {
+  width: 15em;
+  border-collapse: collapse;
+}
+
+#desc th {
+  background-color: whitesmoke;
+  padding: 1em;
+  text-align: left;
+  border: 1px solid black;
+  padding: 1em;
+  white-space: nowrap;
+}
+
+#desc td {
+  border: 1px solid black;
+  padding: 1em;
+  white-space: nowrap;
+}
+
+.form-add-card {
+  width: 100%;
+  max-width: -webkit-fill-available;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-add-card .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-add-card .form-control:focus {
+  z-index: 2;
+}
+
+.form-add-card input {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.remove-padding {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+.remove-padding-left {
+  padding-left: 0px !important;
+}
+
+.remove-padding-right {
+  padding-right: 0px !important;
 }

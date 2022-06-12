@@ -1,4 +1,7 @@
 const { validationResult } = require('express-validator');
+const statusCodes = require('./statusCodes');
+const response = require('./response');
+const render = require('./render');
 
 /**
  * Validator function that is applying defined rules on the request
@@ -15,5 +18,15 @@ module.exports = (req, res, next) => {
     const extractedErrors = [];
     errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }));
 
-    return helper.response(res, true, extractedErrors, null, 'VALIDATION_ERR', true);
+    if (!req.body.rest_call) {
+        let messages = [];
+        extractedErrors.map(message => {
+            for (let key in message) {
+                messages.push(message[key]);
+            }
+        });
+        return render(res, 'error', true, messages.join(', '), null, 'VALIDATION_ERR');
+    }
+
+    return response(res, true, extractedErrors, null, 'VALIDATION_ERR', true);
 };

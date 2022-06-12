@@ -7,6 +7,7 @@ const { body } = require('express-validator');
 const cardRules = () => {
     let rules = [
         body('card_number', 'Please enter 16 digit card number')
+            .customSanitizer(value => { if (value.includes('-')) { return value.replace(/-/g, ''); } else { return value; } })
             .notEmpty()
             .isLength({ min: 16, max: 16 })
             .trim(),
@@ -14,7 +15,8 @@ const cardRules = () => {
             .notEmpty()
             .isLength({ min: 3, max: 3 })
             .trim(),
-        body('card_name', 'Please enter card holder name')
+        body('card_name', 'Please enter valid card holder name')
+            .isString()
             .notEmpty()
             .trim(),
         body('card_expiry_month', 'Please enter valid expiry having 2 digit expiry month')
@@ -28,6 +30,10 @@ const cardRules = () => {
                     }
                 }
 
+                if (parseInt(value) < 1 || parseInt(value) > 12) {
+                    return false;
+                }
+
                 return true;
             })
             .trim(),
@@ -37,6 +43,10 @@ const cardRules = () => {
             .custom((value, { req }) => {
                 const today = new Date();
                 if (parseInt('20' + value) < today.getFullYear()) {
+                    return false;
+                }
+
+                if (parseInt('20' + value) > today.getFullYear() + 10) {
                     return false;
                 }
 
