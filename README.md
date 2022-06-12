@@ -1,6 +1,10 @@
 # credit-card-payment
 A payment system to accept credit cards and store them securely
 
+This app is developed on Node.js version 14.17.0 and PostgreSQL version 14.3.
+
+This app uses Crypto JS AES algorithm for encryption and decryption for secure values. Also to not have duplicate entries hash is being used which is generated using HMAC SHA256 algorithm.
+
 # Steps TODO to run the service.
 
 1- In the terminal, clone the code, Go at the root of the project. Then type "npm install" to install all the dependencies.
@@ -31,4 +35,4 @@ A payment system to accept credit cards and store them securely
 
 5- Try start your project with "Node server.js" command on terminal from root of the project. Open the app in broswer on given port. Default port is 3000.
 
-6- To run test case, try "npm test" command. Right now test is having error, because of helper which is globally defined but is unaccessable by mocha.
+6- To run test case, try "npm test" command.
