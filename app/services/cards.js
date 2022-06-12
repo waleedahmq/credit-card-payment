@@ -11,6 +11,17 @@ const cardService = {
      * @returns newly created object
      */
     addCard: async (body) => {
+        if (body.account_number) {
+            let check = body.account_number[body.account_number.length -1];
+            if (!helper.checkLuhn(body.account_number.slice(0, -1), check)) {
+                const error = new Error();
+                error.status = 'BAD_REQUEST';
+                error.message = 'Account number is not valid';
+                error.data = body.rest_call;
+                throw error;
+            }
+        }
+
         if (body.card_number) {
             body.card_hash = helper.hash(body.card_number);
             const card = await cardProvider.findOne({ card_hash: body.card_hash });

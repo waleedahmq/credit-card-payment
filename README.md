@@ -35,4 +35,8 @@ This app uses Crypto JS AES algorithm for encryption and decryption for secure v
 
 5- Try start your project with "Node server.js" command on terminal from root of the project. Open the app in broswer on given port. Default port is 3000.
 
-6- To run test case, try "npm test" command.
+6- To run test case, try "npm test" command. The folder "test" contains the code of test case.
+
+7- If all information including Account Number for Luhn's Algorithm is saved successfully, it would also mean the given Account Number is valid otherwise it must throw the error.
+
+8- Note that Account Number field is not required for now. Luhn's Algorithm will only run if user will enter the value of Account Number in the form.

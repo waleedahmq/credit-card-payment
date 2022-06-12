@@ -22,6 +22,12 @@ block content
 
                 .col-md-12.col-sm-12.col-lg-12.col-xs-12.remove-padding
                     .col-md-12.col-sm-12.col-lg-12.col-xs-12.remove-padding
+                        //-input account number
+                        label(for='accountNumber' class='sr-only') Account Number
+                        input(type='number' name='account_number' id='accountNumber' class='form-control' placeholder='Account number associated with card')
+
+                .col-md-12.col-sm-12.col-lg-12.col-xs-12.remove-padding
+                    .col-md-12.col-sm-12.col-lg-12.col-xs-12.remove-padding
                         //-input card holder name
                         label(for='cardNumber' class='sr-only') Card Number
                         input(type='text' pattern='[0-9/-]+' name='card_number' id='cardNumber' class='form-control' placeholder='16 digit card number' minlength='19' maxlength = '19' onkeypress='if(this.value.length==4||this.value.length==9||this.value.length==14)this.value=this.value+"-"' onpaste='return false' required)
