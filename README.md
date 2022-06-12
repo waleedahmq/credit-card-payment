@@ -1,7 +1,7 @@
 # credit-card-payment
 A payment system to accept credit cards and store them securely
 
-Steps TODO to run the service.
+# Steps TODO to run the service.
 
 1- In the terminal, clone the code, Go at the root of the project. Then type "npm install" to install all the dependencies.
 
@@ -30,3 +30,5 @@ Steps TODO to run the service.
 4- Make sure the database "payment" exists in the PostgreSQL. If there is none with this name, make sure to create it.
 
 5- Try start your project with "Node server.js" command on terminal from root of the project.
+
+6- To run test case, try "npm test" command. Right now test is having error, because of helper which is globally defined but is unaccessable by mocha.

@@ -1,0 +1,20 @@
+// This config file contains Mocha's defaults.
+// As you can see, comments are allowed.
+// This same configuration could be provided in the `mocha` property of your
+// project's `package.json`.
+{
+  "diff": false,
+  "extension": ["js"],
+  "package": "./package.json",
+  "reporter": "spec",
+  "require": "test/hooks.js",
+  "timeout": 0,
+  "recursive": true,
+  "parallel": false,
+  "allow-uncaught": false,
+  "exit": true,
+  "inline-diffs": false,
+  "retries": 2,
+  "watch-files": ["test/**/*.test.js"],
+  "watch-ignore": ["node_modules"]
+}

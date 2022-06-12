@@ -1,4 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
+const helper = require('../app/helpers');
 
 // exports.bootstrap = async () => {
 // 	let connectionString = helper.env('POSTGRES_URL', `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}/payment`);

@@ -20,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'app', 'public')));
 
 // bootstraping the different modules in app
 require('./bootstrap').bootstrap(app);
+const helper = require('./app/helpers');
 const database = require('./config/database');
 database.sequelize.sync();
 
