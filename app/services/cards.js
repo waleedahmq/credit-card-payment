@@ -12,6 +12,16 @@ const cardService = {
      */
     addCard: async (body) => {
         if (body.card_number) {
+            body.card_hash = helper.hash(body.card_number);
+            const card = await cardProvider.findOne({ card_hash: body.card_hash });
+            if (card) {
+                const error = new Error();
+                error.status = 'FORBIDDEN';
+                error.message = 'Card number already exist';
+                error.data = body.rest_call;
+                throw error;
+            }
+
             body.card_number = helper.encrypt(body.card_number);
         }
         if (body.card_cvv) {
@@ -32,6 +42,7 @@ const cardService = {
                 card.card_number = helper.decrypt(card.card_number);
             }
 
+            delete card['card_hash'];
             delete card['card_cvv'];
             delete card['card_expiry_month'];
             delete card['card_expiry_year'];
@@ -48,15 +59,23 @@ const cardService = {
      */
     getCardById: async (id) => {
         let card = await cardProvider.findOne({ id: id });
+        if (!card) {
+            const error = new Error();
+            error.status = 'NOT_FOUND';
+            error.message = 'Card information not found';
+            error.data = body.rest_call;
+            throw error;
+        }
+
         card = card.toJSON();
         if (card && card.card_number) {
             card.card_number = helper.decrypt(card.card_number);
         }
 
+        delete card['card_hash'];
         delete card['card_cvv'];
         delete card['card_expiry_month'];
         delete card['card_expiry_year'];
-
         return card;
     }
 };

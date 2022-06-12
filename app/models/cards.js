@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             primaryKey: true
         },
+        card_hash: DataTypes.TEXT,
         card_number: DataTypes.TEXT,
         card_cvv: DataTypes.TEXT,
         card_name: DataTypes.TEXT,

@@ -7,7 +7,7 @@ const { body } = require('express-validator');
 const cardRules = () => {
     let rules = [
         body('card_number', 'Please enter 16 digit card number')
-            .customSanitizer(value => { if (value.includes('-')) { return value.replace(/-/g, ''); } else { return value; } })
+            .customSanitizer(value => { value = value.toString(); if (value.includes('-')) { return value.replace(/-/g, ''); } else { return value; } })
             .notEmpty()
             .isLength({ min: 16, max: 16 })
             .trim(),
@@ -46,6 +46,9 @@ const cardRules = () => {
                     return false;
                 }
 
+                /**
+                 * Allowing cards of upto 10 years from now on
+                 */
                 if (parseInt('20' + value) > today.getFullYear() + 10) {
                     return false;
                 }

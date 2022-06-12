@@ -1,8 +1,20 @@
 /**
  * This file is being used to encrypt ot decrypt values.
  */
-var CryptoJS = require('crypto-js');
+const crypto = require('crypto-js');
 const env = require('../app/helpers/env');
+
+/**
+ * Function being used to generate hash of the values.
+ * @param {text value needed to be encrypted} text 
+ * @param {secret key needed to encrypt text} key 
+ * @returns hashed value
+ */
+function generateHash(text, key) {
+    if (!key) key = env('SECRET_KEY', 'secret-key');
+    let hash = crypto.HmacSHA256(text, key);
+    return crypto.enc.Base64.stringify(hash);
+}
 
 /**
  * Function being used to encrypt the values.
@@ -12,7 +24,7 @@ const env = require('../app/helpers/env');
  */
 function encrypted(text, key) {
     if (!key) key = env('SECRET_KEY', 'secret-key');
-    return CryptoJS.AES.encrypt(text, key).toString();
+    return crypto.AES.encrypt(text, key).toString();
 }
 
 /**
@@ -26,12 +38,13 @@ function encrypted(text, key) {
 function decrypted(cipher, key, replace, replaceWith) {
     if (replace) cipher = cipher.replace(/-/g, "\/");
     if (!key) key = env('SECRET_KEY', 'secret-key');
-    var bytes = CryptoJS.AES.decrypt(cipher, key);
-    var plain = bytes.toString(CryptoJS.enc.Utf8);
+    let bytes = crypto.AES.decrypt(cipher, key);
+    let plain = bytes.toString(crypto.enc.Utf8);
     return plain;
 }
 
 module.exports = {
+    generateHash: generateHash,
     encrypt: encrypted,
     decrypt: decrypted
 };

@@ -19,14 +19,14 @@ module.exports = (res, error, message, data, status, isErrorArray, apiVersion) =
     status = status || 'OK';
     apiVersion = apiVersion || 'v1';
 
-    let statusCodeString = statusCodes(status);
+    let statusCode = statusCodes(status);
     let response = {
         error: error,
         message: message,
         data: data,
         isErrorArray: isErrorArray,
         apiVersion: apiVersion,
-        statusCode: statusCodeString,
+        statusCode: statusCode,
     };
-    return res.status(statusCodeString).json(response);
+    return res.status(statusCode).json(response);
 };

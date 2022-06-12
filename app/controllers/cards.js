@@ -25,7 +25,7 @@ module.exports = {
             if (error.message && (typeof error.message === 'object' || Array.isArray(error.message))) {
                 error.message = JSON.stringify(error.message);
             }
-            if (!body.rest_call) {
+            if (!error.data) {
                 return helper.render(res, 'error', true, error.message, null, statusCode);
             }
             return helper.response(res, true, error.message, null, statusCode);
@@ -42,7 +42,7 @@ module.exports = {
     getCards: async (req, res, next) => {
         try {
             const cards = await cardService.getCards();
-            return helper.response(res, false, 'Cards found', cards);
+            return helper.response(res, false, `${cards.length} cards found`, cards);
         } catch (error) {
             const statusCode = error.status || 'INTERNAL_SERVER_ERROR';
             if (error.message && (typeof error.message === 'object' || Array.isArray(error.message))) {

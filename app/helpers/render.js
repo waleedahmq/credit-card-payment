@@ -22,6 +22,6 @@ module.exports = (res, view, error, message, data, status, isErrorArray, apiVers
     status = status || 'OK';
     apiVersion = apiVersion || 'v1';
 
-    let statusCodeString = statusCodes(status);
-    return res.render(view, { title: 'Online Payment System', heading: 'Credit Card Payments', message: message, status: statusCodeString, page, data });
+    let statusCode = statusCodes(status);
+    return res.render(view, { title: 'Online Payment System', heading: 'Credit Card Payments', message: message, status: status, page, data, statusCode: statusCode });
 };
