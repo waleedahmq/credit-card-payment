@@ -25,6 +25,9 @@ const helper = require('./app/helpers');
 const database = require('./config/database');
 database.sequelize.sync();
 
+const response = require('./app/helpers/response');
+const render = require('./app/helpers/render');
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -38,13 +41,18 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  if (req.body.rest_call) {
+    return response(res, true, err.message, null, 'INTERNAL_SERVER_ERROR');
+  }
+  render(res, 'error', true, err.message, null, 'INTERNAL_SERVER_ERROR');
 });
 
 // start listening on the said port
 const port = helper.env('PORT', 3000);
-app.listen(port, function () {
-  console.log(`Server started listening on ${port}`);
-});
+if (require.main === module) {
+  app.listen(port, function () {
+    console.log(`Server started listening on ${port}`);
+  });
+}
 
 module.exports = app;

@@ -7,10 +7,10 @@ const { body } = require('express-validator');
 const cardRules = () => {
     let rules = [
         body('account_number')
-            .customSanitizer(value => { value = value.toString(); if (value.includes('-')) { return value.replace(/-/g, ''); } else { return value; } })
+            .customSanitizer(value => { if (value) { value = value.toString(); if (value.includes('-')) { return value.replace(/-/g, ''); } else { return value; } } else { return value; } })
             .trim(),
         body('card_number', 'Please enter 16 digit card number')
-            .customSanitizer(value => { value = value.toString(); if (value.includes('-')) { return value.replace(/-/g, ''); } else { return value; } })
+            .customSanitizer(value => { if (value) { value = value.toString(); if (value.includes('-')) { return value.replace(/-/g, ''); } else { return value; } } else { return value; } })
             .notEmpty()
             .isLength({ min: 16, max: 16 })
             .trim(),

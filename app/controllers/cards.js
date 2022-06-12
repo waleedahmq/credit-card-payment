@@ -19,8 +19,9 @@ module.exports = {
             if (!body.rest_call) {
                 return helper.render(res, 'success', false, 'Card saved successfully', {});
             }
-            return helper.response(res, false, 'Card saved successfully');
+            return helper.response(res, false, 'Card saved successfully', {});
         } catch (error) {
+            console.log(error);
             const statusCode = error.status || 'INTERNAL_SERVER_ERROR';
             if (error.message && (typeof error.message === 'object' || Array.isArray(error.message))) {
                 error.message = JSON.stringify(error.message);

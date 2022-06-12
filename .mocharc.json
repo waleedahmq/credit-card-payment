@@ -3,7 +3,6 @@
   "extension": ["js"],
   "package": "./package.json",
   "reporter": "spec",
-  "require": "test/hooks.js",
   "timeout": 0,
   "recursive": true,
   "parallel": false,

@@ -33,7 +33,7 @@ This app uses Crypto JS AES algorithm for encryption and decryption for secure v
 
 4- Make sure the database "payment" exists in the PostgreSQL. If there is none with this name, make sure to create it.
 
-5- Try start your project with "Node server.js" command on terminal from root of the project. Open the app in broswer on given port. Default port is 3000.
+5- Try start your project with "npm start" command on terminal from root of the project. Open the app in broswer on given port. Default port is 3000.
 
 6- To run test case, try "npm test" command. The folder "test" contains the code of test case.
 

@@ -23,6 +23,6 @@ exports.bootstrap = app => {
                 }
                 app.use(`/api/${folder}/${route.basePath ? `${route.basePath}` : ''}`, route.router);
             }
-        })
+        });
     });
 };
